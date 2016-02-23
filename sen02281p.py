@@ -15,7 +15,7 @@ def on_connect(client,userdata,flags,rc):
 	client.subscribe( "sen02281p" )
 
 def on_message(client,userdata,msg):
-	print( "on_message: " + msg.topic + " " + str(msg.payload) )
+	print( msg.topic + " " + str(msg.payload) )
 
 def reading(sensor):
 	sum = -1 

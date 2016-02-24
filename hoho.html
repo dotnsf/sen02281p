@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>【人工知能】　うなずきロボット『○○くん』　【営業いらず！】</title>
+<style>
+html,body { height:100%; }
+</style>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+var nod = false;
+var hoho = false;
+
+function nod_func(){
+	nod = !nod;
+	if( nod ){
+		$("#face").css( "top", "110px" );
+	}else{
+		$("#face").css( "top", "100px" );
+	}
+	
+	if( hoho ){
+		setTimeout( "hoho_func()", 500 );
+	}else{
+		setTimeout( "nod_func()", 500 );
+	}
+}
+
+function hoho_func(){
+	$("#face").css( "top", "100px" );
+	$("#mouse").css( "display", "block" );
+	$("#hoho").css( "display", "block" );
+
+	setTimeout( "init()", 2000 );
+}
+
+function init(){
+	nod = false;
+	hoho = false;
+	$("#face").css( "top", "100px" );
+	$("#mouse").css( "display", "none" );
+	$("#hoho").css( "display", "none" );
+	setTimeout( "nod_func()", 500 );
+}
+
+//. WebSocket からメッセージを受け取って再描画する
+var socket;
+var wsUrl = 'ws://' + location.hostname + '/ws/unzk_sensor';
+function connect(){
+	socket = new WebSocket( wsUrl );
+	socket.onmessage = function(e){
+		console.log( e.data );
+		if( e.data < 2 && !hoho ){
+			hoho = true;
+		}else{
+		}
+	}
+	
+	init();
+}
+</script>
+</head>
+<body onload="connect()">
+<div style="width:100%;height:100%;">
+<img id="face" style="position:absolute; top:100px; left:400px;" src="face.png"/>
+<img id="mouse" style="position:absolute; top:300px; left:540px; display:none;" src="mouse.png"/>
+<img id="hoho" style="position:absolute; top:210px; left:20px; display:none;" src="hoho.png"/>
+</div>
+</body>
+</html>

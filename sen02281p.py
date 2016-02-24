@@ -21,7 +21,7 @@ def reading(sensor):
 	sum = -1 
 	if sensor == 0:
 		sum = 0
-		for i in range(0,10):
+		for i in range(0,20):
 			time.sleep(0.1)
 			a = GPIO.input(SIG)
 			sum += a
@@ -39,7 +39,7 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect( "test.mosquitto.org", 1883 )
+client.connect( "iot.eclipse.org", 1883 )
 while client.loop() == 0:
 	msg = reading(0);
 	client.publish( "sen02281p", msg, 0, True )

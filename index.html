@@ -58,11 +58,12 @@ function onAudioProcess(e) {
     audioHist.push( mx );
     var idx = 0;
     for (var i = 0; i < audioHist.length; i++) {
-        if( 0.7 < audioHist[i] ){
+        if( 0.1 < audioHist[i] ){
           idx ++;
         }
     }
-    if( idx > 2 && !hoho){
+    console.log( "[" + cnt + "] max = " + mx + ", idx = " + idx + ", hoho = "+ hoho );
+    if( idx < 5 && !hoho){
         hoho = true;
     }else{
     }

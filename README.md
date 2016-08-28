@@ -14,7 +14,7 @@ Sample Python code for SEN02281P sensor as MQTT client
 
  - WebSocket Application which works on Bluemix
 
-* unzk.html
+* index.html
 
  - Rewrite code only with HTML5
 
